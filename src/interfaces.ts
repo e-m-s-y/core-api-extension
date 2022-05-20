@@ -1,5 +1,6 @@
 export interface IOptions {
     enabled: boolean;
+    maxAmountOfRounds: number;
 }
 
 export interface IDelegate {

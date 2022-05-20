@@ -3,6 +3,7 @@ import { Identifiers, Server } from "@solar-network/core-api";
 import { Container, Contracts, Providers } from "@solar-network/core-kernel";
 
 import { DelegateRankingController } from "./controllers/delegate-ranking";
+import { IOptions } from "./interfaces";
 
 @Container.injectable()
 export class Plugin {
@@ -19,7 +20,7 @@ export class Plugin {
     @Container.tagged("plugin", "@solar-network/core-api")
     protected readonly apiConfiguration!: Providers.PluginConfiguration;
 
-    public async register(): Promise<void> {
+    public async register(options: IOptions): Promise<void> {
         this.log.info(`[${Plugin.ID}] Registering plugin...`);
 
         const servers: Server[] = [];
@@ -38,6 +39,8 @@ export class Plugin {
         }
 
         const controller = this.app.get<DelegateRankingController>(DelegateRankingController.ID);
+
+        controller.setMaxAmountOfRounds(options.maxAmountOfRounds);
 
         for (const server of servers) {
             await server.route({

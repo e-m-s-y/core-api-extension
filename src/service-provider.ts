@@ -2,6 +2,7 @@ import { Providers } from "@solar-network/core-kernel";
 
 import { DelegateRankingController } from "./controllers/delegate-ranking";
 import { Plugin } from "./service";
+import { IOptions } from "./interfaces";
 
 export class ServiceProvider extends Providers.ServiceProvider {
     public async register(): Promise<void> {
@@ -12,7 +13,10 @@ export class ServiceProvider extends Providers.ServiceProvider {
             .bind<DelegateRankingController>(DelegateRankingController.ID)
             .to(DelegateRankingController)
             .inSingletonScope();
-        this.app.get<Plugin>(symbol).register();
+
+        const options = this.config().all() as unknown as IOptions;
+
+        this.app.get<Plugin>(symbol).register(options);
     }
 
     public async bootWhen(): Promise<boolean> {

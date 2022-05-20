@@ -5,12 +5,15 @@ import { DatabaseService, Repositories } from "@solar-network/core-database";
 import { Container, Contracts, Utils } from "@solar-network/core-kernel";
 
 import { IDelegateRanking } from "../interfaces";
+import { defaults } from "../defaults";
 import { DelegateRankingResource } from "../resources/delegate-ranking";
 
 @Container.injectable()
 export class DelegateRankingController extends Controller {
-    public static readonly ID = "@foly/core-api-extension/delegate-ranking-controller";
-    public static readonly PATH = "/delegates/ranking";
+    public static readonly ID: string = "@foly/core-api-extension/delegate-ranking-controller";
+    public static readonly PATH: string = "/delegates/ranking";
+
+    private maxAmountOfRounds: number = defaults.maxAmountOfRounds;
 
     @Container.inject(Container.Identifiers.DatabaseService)
     private readonly databaseService!: DatabaseService;
@@ -32,11 +35,10 @@ export class DelegateRankingController extends Controller {
             return Boom.serverUnavailable("Could not determine history for last round " + lastRound.roundHeight);
         }
 
-        const MAX_ITEMS = 10;
         const histories = [lastRoundHistory];
         let index = 1;
 
-        while (histories.length < MAX_ITEMS) {
+        while (histories.length < this.maxAmountOfRounds) {
             const history = await this.getRoundHistory((lastRound.round - index).toString());
 
             if (history !== null) {
@@ -92,5 +94,15 @@ export class DelegateRankingController extends Controller {
         }
 
         return roundHistory;
+    }
+
+    public setMaxAmountOfRounds(amount: number): DelegateRankingController {
+        if (amount <= 0) {
+            throw new Error('The max amount of rounds must be greater than 0');
+        }
+
+        this.maxAmountOfRounds = amount;
+
+        return this;
     }
 }

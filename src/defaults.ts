@@ -1,4 +1,4 @@
 export const defaults = {
     enabled: false,
-    maxAmountOfRounds: 10,
+    maxAmountOfRounds: 15,
 };

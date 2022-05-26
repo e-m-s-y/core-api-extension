@@ -1,8 +1,8 @@
-import { Providers } from "@solar-network/core-kernel";
+import { Providers } from "@arkecosystem/core-kernel";
 
 import { DelegateRankingController } from "./controllers/delegate-ranking";
-import { Plugin } from "./service";
 import { IOptions } from "./interfaces";
+import { Plugin } from "./service";
 
 export class ServiceProvider extends Providers.ServiceProvider {
     public async register(): Promise<void> {

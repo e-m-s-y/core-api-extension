@@ -16,9 +16,9 @@
         "compile": "../../node_modules/typescript/bin/tsc"
     },
     "dependencies": {
-        "@solar-network/core-api": "workspace:*",
-        "@solar-network/core-database": "workspace:*",
-        "@solar-network/core-kernel": "workspace:*",
+        "@arkecosystem/core-api": "workspace:*",
+        "@arkecosystem/core-database": "workspace:*",
+        "@arkecosystem/core-kernel": "workspace:*",
         "@hapi/boom": "9.1.4",
         "@hapi/hapi": "20.2.1"
     }

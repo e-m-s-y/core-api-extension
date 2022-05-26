@@ -1,6 +1,6 @@
 {
     "name": "@foly/core-api-extension",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A core plugin that extends the core-api package by adding custom endpoints",
     "license": "CC BY-ND 4.0",
     "contributors": [
@@ -16,10 +16,12 @@
         "compile": "../../node_modules/typescript/bin/tsc"
     },
     "dependencies": {
-        "@arkecosystem/core-api": "workspace:*",
-        "@arkecosystem/core-database": "workspace:*",
-        "@arkecosystem/core-kernel": "workspace:*",
         "@hapi/boom": "9.1.4",
         "@hapi/hapi": "20.2.1"
+    },
+    "devDependencies": {
+        "@arkecosystem/core-api": "^3.1.0 || ^4.0.0-next.14",
+        "@arkecosystem/core-database": "^3.1.0 || ^4.0.0-next.14",
+        "@arkecosystem/core-kernel": "^3.1.0 || ^4.0.0-next.14"
     }
 }

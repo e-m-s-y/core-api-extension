@@ -2,7 +2,7 @@
 A core plugin that extends the core-api package by adding custom endpoints.
 
 ## Features
-- Delegate ranking
+- Delegate ranking endpoint `/api/delegates/ranking`.
 
 ## Installation
 ### Yarn

@@ -31,10 +31,6 @@ export class DelegateRankingController extends Controller {
         const lastRound: Contracts.Shared.RoundInfo = Utils.roundCalculator.calculateRound(lastBlock.height);
         const lastRoundHistory = await this.getRoundHistory(lastRound.round.toString());
 
-        if (lastRound.round === 1) {
-            return Boom.serverUnavailable("Round 1 is currently not yet completed, try again later");
-        }
-
         if (!lastRoundHistory) {
             return Boom.serverUnavailable("Could not determine history for last round " + lastRound.roundHeight);
         }
@@ -95,7 +91,7 @@ export class DelegateRankingController extends Controller {
                 if (a.publicKey === b.publicKey) {
                     throw new Error(
                         `The balance and public key of both delegates are identical! ` +
-                            `Delegate "${a.publicKey}" appears twice in the list.`,
+                        `Delegate "${a.publicKey}" appears twice in the list.`,
                     );
                 }
 

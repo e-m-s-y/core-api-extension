@@ -5,8 +5,11 @@ A core plugin that extends the core-api package by adding custom endpoints.
 - Delegate ranking
 
 ## Installation
-Use these steps if you installed your node using Git clone.
+### Core CLI
+1. Install plugin using `ark plugin:install @foly/core-api-extension`.
+2. Restart relay proces.
 
+### Git clone
 1. Go to the plugin directory `cd ~/ark-core/plugins`.
 2. Clone the plugin `git clone https://github.com/e-m-s-y/core-api-extension -b ark`.
 3. Install and build the plugin `cd core-api-extension && pnpm install && pnpm build`.

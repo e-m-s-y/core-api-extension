@@ -2,7 +2,8 @@ import Boom from "@hapi/boom";
 import Hapi from "@hapi/hapi";
 import { Controller } from "@solar-network/api";
 import { DatabaseService, Repositories } from "@solar-network/database";
-import { Container, Contracts, Utils } from "@solar-network/kernel";
+import { Container, Contracts, Utils as KernelUtils } from "@solar-network/kernel";
+import { Utils as CryptoUtils } from "@solar-network/crypto";
 
 import { IDelegateRanking } from "../interfaces";
 import { defaults } from "../defaults";
@@ -28,7 +29,7 @@ export class DelegateRankingController extends Controller {
             return Boom.notFound("Round not found");
         }
 
-        const lastRound: Contracts.Shared.RoundInfo = Utils.roundCalculator.calculateRound(lastBlock.height);
+        const lastRound: Contracts.Shared.RoundInfo = KernelUtils.roundCalculator.calculateRound(lastBlock.height);
         const lastRoundHistory = await this.getRoundHistory(lastRound.round.toString());
 
         if (!lastRoundHistory) {
@@ -66,8 +67,8 @@ export class DelegateRankingController extends Controller {
         const delegates = await this.roundRepository.findById(roundId);
 
         delegates.sort((a, b) => {
-            const voteBalanceA: Utils.BigNumber = a.balance;
-            const voteBalanceB: Utils.BigNumber = b.balance;
+            const voteBalanceA: CryptoUtils.BigNumber = a.balance;
+            const voteBalanceB: CryptoUtils.BigNumber = b.balance;
 
             const diff = voteBalanceB.comparedTo(voteBalanceA);
 

@@ -19,6 +19,7 @@
         "@solar-network/api": "workspace:*",
         "@solar-network/database": "workspace:*",
         "@solar-network/kernel": "workspace:*",
+        "@solar-network/crypto": "workspace:*",
         "@hapi/boom": "9.1.4",
         "@hapi/hapi": "20.2.1"
     }

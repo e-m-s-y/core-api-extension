@@ -1,6 +1,6 @@
 {
     "name": "@foly/core-api-extension",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A core plugin that extends the core-api package by adding custom endpoints",
     "license": "CC BY-ND 4.0",
     "contributors": [
@@ -16,9 +16,9 @@
         "compile": "../../node_modules/typescript/bin/tsc"
     },
     "dependencies": {
-        "@solar-network/core-api": "workspace:*",
-        "@solar-network/core-database": "workspace:*",
-        "@solar-network/core-kernel": "workspace:*",
+        "@solar-network/api": "workspace:*",
+        "@solar-network/database": "workspace:*",
+        "@solar-network/kernel": "workspace:*",
         "@hapi/boom": "9.1.4",
         "@hapi/hapi": "20.2.1"
     }

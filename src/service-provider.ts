@@ -1,4 +1,4 @@
-import { Providers } from "@solar-network/core-kernel";
+import { Providers } from "@solar-network/kernel";
 
 import { DelegateRankingController } from "./controllers/delegate-ranking";
 import { Plugin } from "./service";

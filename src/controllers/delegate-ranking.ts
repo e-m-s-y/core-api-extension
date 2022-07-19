@@ -1,8 +1,8 @@
 import Boom from "@hapi/boom";
 import Hapi from "@hapi/hapi";
-import { Controller } from "@solar-network/core-api";
-import { DatabaseService, Repositories } from "@solar-network/core-database";
-import { Container, Contracts, Utils } from "@solar-network/core-kernel";
+import { Controller } from "@solar-network/api";
+import { DatabaseService, Repositories } from "@solar-network/database";
+import { Container, Contracts, Utils } from "@solar-network/kernel";
 
 import { IDelegateRanking } from "../interfaces";
 import { defaults } from "../defaults";

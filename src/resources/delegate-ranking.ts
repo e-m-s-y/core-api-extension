@@ -1,5 +1,5 @@
-import { Contracts as ApiContracts } from "@solar-network/core-api";
-import { Container, Contracts as KernelContracts } from "@solar-network/core-kernel";
+import { Contracts as ApiContracts } from "@solar-network/api";
+import { Container, Contracts as KernelContracts } from "@solar-network/kernel";
 
 import { IDelegateRanking } from "../interfaces";
 

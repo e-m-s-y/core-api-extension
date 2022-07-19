@@ -1,6 +1,6 @@
 import Hapi from "@hapi/hapi";
-import { Identifiers, Server } from "@solar-network/core-api";
-import { Container, Contracts, Providers } from "@solar-network/core-kernel";
+import { Identifiers, Server } from "@solar-network/api";
+import { Container, Contracts, Providers } from "@solar-network/kernel";
 
 import { DelegateRankingController } from "./controllers/delegate-ranking";
 import { IOptions } from "./interfaces";
@@ -17,7 +17,7 @@ export class Plugin {
     private readonly app!: Contracts.Kernel.Application;
 
     @Container.inject(Container.Identifiers.PluginConfiguration)
-    @Container.tagged("plugin", "@solar-network/core-api")
+    @Container.tagged("plugin", "@solar-network/api")
     protected readonly apiConfiguration!: Providers.PluginConfiguration;
 
     public async register(options: IOptions): Promise<void> {

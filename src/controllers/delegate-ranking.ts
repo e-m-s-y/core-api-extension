@@ -1,12 +1,12 @@
 import Boom from "@hapi/boom";
 import Hapi from "@hapi/hapi";
 import { Controller } from "@solar-network/api";
+import { Utils as CryptoUtils } from "@solar-network/crypto";
 import { DatabaseService, Repositories } from "@solar-network/database";
 import { Container, Contracts, Utils as KernelUtils } from "@solar-network/kernel";
-import { Utils as CryptoUtils } from "@solar-network/crypto";
 
-import { IDelegateRanking } from "../interfaces";
 import { defaults } from "../defaults";
+import { IDelegateRanking } from "../interfaces";
 import { DelegateRankingResource } from "../resources/delegate-ranking";
 
 @Container.injectable()
@@ -52,6 +52,16 @@ export class DelegateRankingController extends Controller {
         return this.respondWithCollection(histories, DelegateRankingResource);
     }
 
+    public setMaxAmountOfRounds(amount: number): DelegateRankingController {
+        if (amount <= 0) {
+            throw new Error("The max amount of rounds must be greater than 0");
+        }
+
+        this.maxAmountOfRounds = amount;
+
+        return this;
+    }
+
     private async getRoundHistory(roundId: string): Promise<IDelegateRanking | null> {
         const rounds = await this.roundRepository.findById(roundId);
 
@@ -95,15 +105,5 @@ export class DelegateRankingController extends Controller {
         }
 
         return roundHistory;
-    }
-
-    public setMaxAmountOfRounds(amount: number): DelegateRankingController {
-        if (amount <= 0) {
-            throw new Error('The max amount of rounds must be greater than 0');
-        }
-
-        this.maxAmountOfRounds = amount;
-
-        return this;
     }
 }
